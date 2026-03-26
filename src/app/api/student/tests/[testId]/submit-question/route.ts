@@ -23,6 +23,14 @@ export async function POST(
   if (!assigned)
     return NextResponse.json({ error: "Not assigned" }, { status: 403 });
 
+  // enforce expiry if endTime exists
+  if (assigned.endTime && new Date() > new Date(assigned.endTime)) {
+    return NextResponse.json(
+      { error: "Test time has ended" },
+      { status: 403 }
+    );
+  }
+
   let resDoc = await Result.findOne({ student: auth.user.id, test: testId });
   if (!resDoc) {
     const qs = await Question.findOne({ testId }).lean();

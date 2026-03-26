@@ -16,6 +16,8 @@ export default function StudentTestPage() {
   const [testTitle, setTestTitle] = useState<string>("");
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [timer, setTimer] = useState(0);
+  const [durationSeconds, setDurationSeconds] = useState<number | null>(null);
+  const [timeUp, setTimeUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +37,10 @@ export default function StudentTestPage() {
       .toString()
       .padStart(2, "0")}`;
   };
+
+  const remainingSeconds =
+    durationSeconds !== null ? Math.max(durationSeconds - timer, 0) : timer;
+
 
   // Check for terms and conditions on mount
   useEffect(() => {
@@ -210,6 +216,26 @@ export default function StudentTestPage() {
     };
   }, []);
 
+  const finalize = useCallback(async () => {
+    if (!testId || submitting) return;
+    setSubmitting(true);
+    try {
+      const r = await fetch(`/api/student/tests/${testId}/submit-final`, {
+        method: "POST",
+      });
+      const data = await r.json();
+      if (r.ok) {
+        router.replace(`/student/result/${data.resultId}`);
+      } else {
+        router.replace(`/student/result/0`);
+      }
+    } catch {
+      router.replace(`/student/result/0`);
+    } finally {
+      setSubmitting(false);
+    }
+  }, [testId, router, submitting]);
+
   const load = async (i: number) => {
     if (!testId || !termsAccepted) return;
     try {
@@ -234,6 +260,9 @@ export default function StudentTestPage() {
       setOptions(data.options || []);
       setTestTitle(data.testTitle || "Test");
       setTotalQuestions(data.totalQuestions || 0);
+      if (data.durationMinutes) {
+        setDurationSeconds(data.durationMinutes * 60);
+      }
       setSelected(null);
     } catch (e: any) {
       setError("Network error while loading question.");
@@ -246,11 +275,34 @@ export default function StudentTestPage() {
     if (testId && termsAccepted) load(index);
   }, [index, testId, termsAccepted]);
 
-  // Timer - starts counting up from 0
+  // Timer - counts seconds and can auto-submit when time ends
   useEffect(() => {
-    const id = setInterval(() => setTimer((t) => t + 1), 1000);
+    if (timeUp) return undefined;
+
+    const id = setInterval(() => {
+      setTimer((t) => {
+        if (durationSeconds !== null && t >= durationSeconds) {
+          return t;
+        }
+        return t + 1;
+      });
+    }, 1000);
+
     return () => clearInterval(id);
-  }, []);
+  }, [durationSeconds, timeUp]);
+
+  useEffect(() => {
+    if (
+      durationSeconds !== null &&
+      timer >= durationSeconds &&
+      !timeUp &&
+      !submitting
+    ) {
+      setTimeUp(true);
+      window.alert("Time is up! Your answers will be submitted automatically.");
+      finalize();
+    }
+  }, [timer, durationSeconds, timeUp, submitting, finalize]);
 
   const submitAnswer = async () => {
     if (selected == null || !testId) return;
@@ -266,26 +318,6 @@ export default function StudentTestPage() {
         }),
       });
       setIndex(index + 1);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const finalize = async () => {
-    if (!testId) return;
-    setSubmitting(true);
-    try {
-      const r = await fetch(`/api/student/tests/${testId}/submit-final`, {
-        method: "POST",
-      });
-      const data = await r.json();
-      if (r.ok) {
-        router.replace(`/student/result/${data.resultId}`);
-      } else {
-        router.replace(`/student/result/0`);
-      }
-    } catch {
-      router.replace(`/student/result/0`);
     } finally {
       setSubmitting(false);
     }
@@ -358,13 +390,20 @@ export default function StudentTestPage() {
                   <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-md border border-green-300">
                     <Clock className="w-5 h-5 text-green-600 animate-pulse" />
                     <span className="font-mono font-bold text-green-900 text-lg select-none">
-                      {formatTime(timer)}
+                      {formatTime(remainingSeconds)}
+                      {durationSeconds !== null && " (remaining)"}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
           </header>
+
+          {timeUp && (
+            <div className="mx-auto max-w-4xl px-4 py-3 bg-red-100 border border-red-300 text-red-700 rounded-lg mt-4 text-center">
+              ⏰ Time is up. Your test is being submitted automatically.
+            </div>
+          )}
 
           {/* Main Content */}
           <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-8">
@@ -424,7 +463,7 @@ export default function StudentTestPage() {
                   <Button
                     onClick={handleSubmitTest}
                     variant="outline"
-                    disabled={submitting}
+                    disabled={submitting || timeUp}
                     className="border-2 border-red-400 text-red-600 hover:bg-red-50 hover:text-red-700 font-semibold px-6"
                   >
                     Submit Test
@@ -432,7 +471,7 @@ export default function StudentTestPage() {
 
                   <Button
                     onClick={submitAnswer}
-                    disabled={selected === null || submitting}
+                    disabled={selected === null || submitting || timeUp}
                     className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-6 text-lg shadow-lg"
                   >
                     {submitting ? "Submitting..." : "Next Question →"}
