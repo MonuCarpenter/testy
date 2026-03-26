@@ -39,7 +39,6 @@ export async function GET(
     options: sub.encryptedOptions.map((s: string) => decryptString(s)),
     testTitle: test.title,
     totalQuestions: (qs as any).questions.length,
-    durationMinutes: test.durationMinutes || 60,
   };
   return NextResponse.json(payload);
 }

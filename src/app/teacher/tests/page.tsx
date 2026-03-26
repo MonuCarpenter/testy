@@ -105,7 +105,7 @@ export default function TeacherTestsPage() {
         />
         <input
           type="number"
-          min={2}
+          min={10}
           step={5}
           placeholder="Duration (min)"
           className="px-3 py-2 rounded-lg bg-input border border-border text-sm md:text-base"
