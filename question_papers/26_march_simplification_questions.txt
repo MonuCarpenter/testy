@@ -1,0 +1,287 @@
+
+# Question file template for Testy (plain .txt)
+# Parser expects this exact structure for each MCQ block.
+# - Question line starts with `Q<number>. `
+# - Four option lines start with `A) `, `B) `, `C) `, `D) `
+# - Answer line must be `Answer : <A-D>` (case-insensitive for the letter)
+# - Separate questions with one blank line
+
+Q1. Calculate: 625 ÷ 5 × 8
+A) 1000
+B) 125
+C) 250
+D) 500
+Answer : A
+
+Q2. (3/4 of 240) + (15% of 360) = ?
+A) 224
+B) 234
+C) 198
+D) 246
+Answer : B
+
+Q3. 25% of 640 + 12.5% of 800 = ?
+A) 240
+B) 300
+C) 280
+D) 260
+Answer : D
+
+Q4. 45 + 55 × 2 − 30 ÷ 5 = ?
+A) 151
+B) 159
+C) 149
+D) 143
+Answer : C
+
+Q5. (4^3 × 2^4) ÷ (8 × 16) = ?
+A) 4
+B) 8
+C) 16
+D) 32
+Answer : B
+
+Q6. (7/8) ÷ (7/16) = ?
+A) 2
+B) 1/2
+C) 4
+D) 7/8
+Answer : A
+
+Q7. √625 + √144 = ?
+A) 38
+B) 36
+C) 35
+D) 37
+Answer : D
+
+Q8. (15% of 200) ÷ (5%) = ?
+A) 2
+B) 4
+C) 3
+D) 6
+Answer : C
+
+Q9. Simplify: 3x^2 × 2x^3
+A) 6x^5
+B) 5x^4
+C) 6x^6
+D) x^5
+Answer : A
+
+Q10. 0.2 × 0.5 = ?
+A) 0.01
+B) 0.02
+C) 1.0
+D) 0.1
+Answer : D
+
+Q11. 5/6 + 1/3 = ?
+A) 1
+B) 7/6
+C) 11/6
+D) 2/3
+Answer : B
+
+Q12. 18^2 ÷ (9 × 4) = ?
+A) 18
+B) 4
+C) 9
+D) 8
+Answer : C
+
+Q13. (120 ÷ 3) + (45 ÷ 5) = ?
+A) 45
+B) 50
+C) 41
+D) 49
+Answer : D
+
+Q14. (2.5 × 4) + (3.5 × 2) = ?
+A) 17
+B) 16
+C) 18
+D) 15
+Answer : A
+
+Q15. 11/2 − 3/4 = ?
+A) 5/4
+B) 8/4
+C) 13/4
+D) 19/4
+Answer : D
+
+Q16. 20% of 450 = ?
+A) 70
+B) 90
+C) 80
+D) 100
+Answer : B
+
+Q17. 2^5 − 3^3 = ?
+A) 1
+B) 9
+C) 5
+D) 11
+Answer : C
+
+Q18. (3/5 of 250) + (1/2 of 120) = ?
+A) 200
+B) 210
+C) 190
+D) 220
+Answer : B
+
+Q19. (7 × 9) − (6 × 8) = ?
+A) 15
+B) 9
+C) 18
+D) 12
+Answer : A
+
+Q20. (4/9) of 810 = ?
+A) 320
+B) 300
+C) 400
+D) 360
+Answer : D
+
+Q21. 1/4 of 3/5 = ?
+A) 3/10
+B) 1/5
+C) 3/20
+D) 1/20
+Answer : C
+
+Q22. 50^2 ÷ (25 × 2) = ?
+A) 100
+B) 50
+C) 25
+D) 20
+Answer : B
+
+Q23. (125 × 8) ÷ 25 = ?
+A) 50
+B) 32
+C) 40
+D) 20
+Answer : C
+
+Q24. 9^3 = ?
+A) 512
+B) 729
+C) 243
+D) 343
+Answer : B
+
+Q25. (3/7) ÷ (9/14) = ?
+A) 1/3
+B) 3/2
+C) 7/9
+D) 2/3
+Answer : D
+
+Q26. 72 ÷ 9 + 5 × 6 = ?
+A) 38
+B) 42
+C) 32
+D) 36
+Answer : A
+
+Q27. (45% of 200) − (10% of 300) = ?
+A) 30
+B) 75
+C) 60
+D) 90
+Answer : C
+
+Q28. 2/3 of 450 = ?
+A) 250
+B) 300
+C) 275
+D) 200
+Answer : B
+
+Q29. √81 × √16 = ?
+A) 45
+B) 24
+C) 12
+D) 36
+Answer : D
+
+Q30. (7^2 + 8^2) ÷ 5 = ?
+A) 113/10
+B) 113/2
+C) 113/5
+D) 22
+Answer : C
+
+Q31. (8/3) + (5/6) = ?
+A) 4
+B) 7/2
+C) 11/6
+D) 3
+Answer : B
+
+Q32. 150% of 120 = ?
+A) 180
+B) 160
+C) 120
+D) 140
+Answer : A
+
+Q33. (2^4 × 3^2) ÷ 6 = ?
+A) 9
+B) 18
+C) 36
+D) 24
+Answer : D
+
+Q34. 3/4 of 80 + 1/5 of 100 = ?
+A) 70
+B) 60
+C) 80
+D) 90
+Answer : C
+
+Q35. 48 ÷ (3/4) = ?
+A) 64
+B) 36
+C) 48
+D) 72
+Answer : A
+
+Q36. 125% of 240 = ?
+A) 280
+B) 260
+C) 290
+D) 300
+Answer : D
+
+Q37. (2/5 of 250) + (1/10 of 900) = ?
+A) 180
+B) 190
+C) 170
+D) 160
+Answer : B
+
+Q38. 14 × 6 − 18 ÷ 3 = ?
+A) 76
+B) 72
+C) 78
+D) 80
+Answer : C
+
+Q39. 5^2 + 2^3 = ?
+A) 24
+B) 33
+C) 36
+D) 27
+Answer : B
+
+Q40. 7/8 of 64 = ?
+A) 56
+B) 48
+C) 64
+D) 52
+Answer : A

@@ -1,0 +1,30 @@
+# Question file template for Testy (plain .txt)
+# Parser expects this exact structure for each MCQ block.
+# - Question line starts with `Q<number>. `
+# - Four option lines start with `A) `, `B) `, `C) `, `D) `
+# - Answer line must be `Answer : <A-D>` (case-insensitive for the letter)
+# - Separate questions with one blank line
+
+Q1. Example: What is 25% of 200?
+A) 25
+B) 50
+C) 75
+D) 100
+Answer : B
+
+Q2. Example: What is 7 × 8?
+A) 54
+B) 56
+C) 58
+D) 60
+Answer : B
+
+# --- Copy the block above and increment question numbers to create more questions ---
+
+# Blank question template:
+# Q#. Your question text here
+# A) option A
+# B) option B
+# C) option C
+# D) option D
+# Answer : A
